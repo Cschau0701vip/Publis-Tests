@@ -32,6 +32,6 @@ runs:
       run: |
         pwd
         ls -R .
-        chmod +x ${{ github.workspace }}/ui-tests-summary.py
-        python ui-tests-summary.py
+        chmod +x $GITHUB_ACTION_PATH/ui-tests-summary.py
+        python $GITHUB_ACTION_PATH/ui-tests-summary.py
       shell: bash  
