@@ -35,6 +35,11 @@ runs:
       run: |
         pwd
         ls -R .
+        echo 'ARTIFACT_PATH: ${{ inputs.artifacts_path }}' 
+        echo 'ACCESS_TOKEN: ${{ github.token }}' 
+        echo 'PR_NUMBER: ${{ inputs.pull_request_number }}' 
+        echo 'REPOSITORY: ${{ github.repository }}' 
+        
         chmod +x $GITHUB_ACTION_PATH/ui-tests-summary.py
         python $GITHUB_ACTION_PATH/ui-tests-summary.py
       shell: bash  
