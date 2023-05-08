@@ -7,7 +7,13 @@ inputs:
   artifacts_path:
     description: 'The artifacts path for results file.'
     required: true
+  gh_token:
+    description: 'The artifacts path for results file.'
+    required: true
   pull_request_number:
+    description: 'The artifacts path for results file.'
+    required: true
+  gh_repo:
     description: 'The artifacts path for results file.'
     required: true
 
@@ -29,16 +35,16 @@ runs:
     - name: Publish Test Results
       env:
         ARTIFACT_PATH: ${{ inputs.artifacts_path }}
-        ACCESS_TOKEN: ${{ github.token }}
-        PR_NUMBER: ${{ github.event.number }}
-        REPOSITORY: ${{ github.repository }}
+        ACCESS_TOKEN: ${{ inputs.gh_token }}
+        PR_NUMBER: ${{ inputs.pull_request_number }}
+        REPOSITORY: ${{ inputs.gh_repo }}
       run: |
         pwd
         ls -R .
         echo 'ARTIFACT_PATH: ${{ inputs.artifacts_path }}' 
-        echo 'ACCESS_TOKEN: ${{ github.token }}' 
+        echo 'ACCESS_TOKEN: ${{ inputs.gh_token }}' 
         echo 'PR_NUMBER: ${{ inputs.pull_request_number }}' 
-        echo 'REPOSITORY: ${{ github.repository }}' 
+        echo 'REPOSITORY: ${{ inputs.gh_repo }}' 
         
         chmod +x $GITHUB_ACTION_PATH/ui-tests-summary.py
         python $GITHUB_ACTION_PATH/ui-tests-summary.py
