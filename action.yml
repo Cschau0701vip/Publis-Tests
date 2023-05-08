@@ -30,6 +30,8 @@ runs:
         PR_NUMBER: ${{ github.event.number }}
         REPOSITORY: ${{ github.repository }}
       run: |
-        chmod +x ./ui-tests-summary.py
-        python ./ui-tests-summary.py
+        pwd
+        ls -R .
+        chmod +x ${{ github.workspace }}/ui-tests-summary.py
+        python ui-tests-summary.py
       shell: bash  
