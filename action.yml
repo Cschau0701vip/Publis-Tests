@@ -45,6 +45,9 @@ runs:
         echo 'ACCESS_TOKEN: ${{ inputs.gh_token }}' 
         echo 'PR_NUMBER: ${{ inputs.pull_request_number }}' 
         echo 'REPOSITORY: ${{ inputs.gh_repo }}' 
+        echo "PR number = ${{ github.event.pull_request.number }}"
+        echo "PR number2 = ${{ github.event.issue.number }}"
+        echo "PR number2 = ${{ github.event.number }}"
         
         chmod +x $GITHUB_ACTION_PATH/ui-tests-summary.py
         python $GITHUB_ACTION_PATH/ui-tests-summary.py
