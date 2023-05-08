@@ -30,7 +30,7 @@ runs:
       env:
         ARTIFACT_PATH: ${{ inputs.artifacts_path }}
         ACCESS_TOKEN: ${{ github.token }}
-        PR_NUMBER: ${{ github.event }}
+        PR_NUMBER: ${{ github.event.number }}
         REPOSITORY: ${{ github.repository }}
       run: |
         pwd
