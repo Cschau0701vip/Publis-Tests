@@ -1,0 +1,35 @@
+name: Upload UI Tests Summary
+
+description: |
+  Uploads the UI tests summary reports to pull requests.
+
+inputs:
+  artifacts_path:
+    description: 'The artifacts path for results file.'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        
+    - name: Install PyGithub
+      run: pip install PyGithub
+      shell: bash  
+    
+    - name: Publish Test Results
+      env:
+        ARTIFACT_PATH: ${{ inputs.artifacts_path }}
+        ACCESS_TOKEN: ${{ github.token }}
+        PR_NUMBER: ${{ github.event.number }}
+        REPOSITORY: ${{ github.repository }}
+      run: |
+        chmod +x ./ui-tests-summary.py
+        python ./ui-tests-summary.py
+      shell: bash  
