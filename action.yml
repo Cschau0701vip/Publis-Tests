@@ -27,7 +27,7 @@ runs:
       env:
         ARTIFACT_PATH: ${{ inputs.artifacts_path }}
         ACCESS_TOKEN: ${{ github.token }}
-        PR_NUMBER: ${{ github.event.number }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
         REPOSITORY: ${{ github.repository }}
       run: |
         pwd
