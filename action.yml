@@ -29,8 +29,8 @@ runs:
     - name: Publish Test Results
       env:
         ARTIFACT_PATH: ${{ inputs.artifacts_path }}
-        ACCESS_TOKEN: $GITHUB_TOKEN
-        PR_NUMBER: ${{ inputs.pull_request_number }}
+        ACCESS_TOKEN: ${{ github.token }}
+        PR_NUMBER: ${{ github.event }}
         REPOSITORY: ${{ github.repository }}
       run: |
         pwd
