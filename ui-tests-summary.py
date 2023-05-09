@@ -8,7 +8,10 @@ import xml.etree.ElementTree as ET
 # Get the access token from environment variables
 access_token = os.environ['ACCESS_TOKEN']
 result = subprocess.run(['ls', '-a'])
-print('result: ' + result.stdout)
+if result.stdout is not None:
+    print('result: ' + result.stdout)
+else:
+    print('Command did not generate any output')
 # Create a PyGithub instance
 g = Github(access_token)
 file_path = glob.glob(os.environ['ARTIFACT_PATH'])
