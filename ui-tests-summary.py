@@ -51,8 +51,12 @@ if(len(file_path) > 0):
     # Get the pull request object
     pull_request_number = int(os.environ['PR_NUMBER'])
     pull_request = repo.get_pull(pull_request_number)
-    thread_id = pull_request.get_review_comments().reversed[0].id
-
+    issue_comments = pull_request.get_issue_comments().reversed()
+    if issue_comments:
+        thread_id = issue_comments[0].id
+    else:
+        print("No issue comments found.")
+        
     # Construct the comment message
     total_runs = num_testsuite #1
     pass_runs = num_testsuite #1
@@ -77,7 +81,7 @@ if(len(file_path) > 0):
     
     # Post a message on the pull request
     try:
-        pull_request.create_review_comment(body=messageBody, in_reply_to=thread_id)
+        pull_request.create_issue_comment(body=messageBody, in_reply_to=thread_id)
         pull_request.create_issue_comment(messageBody)
         print("Message posted successfully.")
     except GithubException as e:
