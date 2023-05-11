@@ -51,7 +51,8 @@ if(len(file_path) > 0):
     # Get the pull request object
     pull_request_number = int(os.environ['PR_NUMBER'])
     pull_request = repo.get_pull(pull_request_number)
-    issue_comments = pull_request.get_issue_comments().reversed()
+    issue_comments = pull_request.get_issue_comments()
+    print(issue_comments)
     if issue_comments:
         thread_id = issue_comments[0].id
     else:
