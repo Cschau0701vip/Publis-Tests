@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 
 # Get the access token from environment variables
 access_token = os.environ['ACCESS_TOKEN']
-result = subprocess.run(['ls', '-a'])
+# result = subprocess.run(['ls', '-a'])
 # Create a PyGithub instance
 g = Github(access_token)
 file_path = glob.glob(os.environ['ARTIFACT_PATH'])
@@ -52,7 +52,7 @@ if(len(file_path) > 0):
     pull_request_number = int(os.environ['PR_NUMBER'])
     pull_request = repo.get_pull(pull_request_number)
     review_comments = pull_request.get_review_comments()
-    print(review_comments)
+    print('review_comments: {0}'.format(review_comments))
     if review_comments:
         thread_id = review_comments.reversed[0].id
     else:
